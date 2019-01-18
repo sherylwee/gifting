@@ -1,0 +1,80 @@
+html, body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: #FBF5F3;
+}
+
+.navcolor {
+    font-size: 14px;
+    color: #F96900;
+    cursor: pointer;
+}
+
+.navcolor:hover {
+    color: #FFA983;
+    transition: all 0.2s;
+}
+
+.spacing {
+    margin-left:2.7%;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #BF3100;
+}
+
+.name:hover {
+    transition: all 0.2s;
+    color: #D67B5C;
+    text-decoration: none;
+}
+
+.opacity {
+    opacity: 0.5;
+    color: #BF3100;
+}
+
+.dropdowncolor {
+    background-color: #813405;
+    color:white;
+}
+
+.dropdowncolor:hover {
+    color: #BA9076;
+}
+/*
+.bgimg {
+    background: url(../assets/bg.png) no-repeat;
+    height: 800px;
+    margin-left: -100px;
+}*/
+
+.divider {
+    border-right: 2px solid #F9A03F;
+}
+
+.aligntop {
+    padding-top: 10%;
+}
+
+.submitbutton {
+    background-color: #F9A03F;
+    color: white;
+    font-size: 14px;
+}
+
+#search {
+    background-color: white;
+    width: 98%;
+}
+
+.aligntop {
+    padding-top: 2.9%;
+}
+
+.spacingright {
+    margin-right: 2%;
+}
