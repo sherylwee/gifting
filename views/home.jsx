@@ -5,8 +5,15 @@ class Home extends React.Component {
     render() {
 
         let users = this.props.users.map( (user, index) => { return (
-            <p className="pt-5"> <a href={user.name} className="name pt-5">{user.name}</a><p className="opacity">{user.category}<br/><strong>By: </strong>{user.deadline}</p></p>
 
+
+            <a href={user.name} className="column pl-5 py-4 spacing"><div className="name">{user.name}</div><br/>
+
+                <img id ="imgsize" src="https://media.giphy.com/media/8cARKvZXq73sOZBdrw/giphy.gif"/>
+
+
+                <p className="opacity">{user.category}<br/><strong>By: </strong>{user.deadline}</p>
+            </a>
             );
         });
 
@@ -19,17 +26,30 @@ class Home extends React.Component {
                 </head>
                 <body>
                     <Default>
-                    <div class="dropdown spacing mt-3">
-                      <button class="btn dropdown-toggle dropdowncolor" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sort by
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Name</button>
-                        <button class="dropdown-item" type="button">Occasion</button>
-                        <button class="dropdown-item" type="button">Deadline</button>
+
+
+                    <div class="row justify-content-between pt-3">
+                        <div class="col-4 header spacing">
+                          My List
+                        </div>
+                        <div class="col-4 spacingright">
+
+                          <div className="dropdown row justify-content-end">
+                            <button className="btn dropdown-toggle dropdowncolor" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Sort by
+                            </button>
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+
+
+                              <button className="dropdown-item" type="button">Name</button>
+                              <button className="dropdown-item" type="button">Occasion</button>
+                              <button className="dropdown-item" type="button">Deadline</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                        <div className="spacing">{users}</div>
+
+                            {users}
 
                     </Default>
                 </body>

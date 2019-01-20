@@ -1,3 +1,6 @@
+DROP TABLE users;
+DROP TABLE receivers;
+
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name TEXT,

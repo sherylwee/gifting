@@ -51,12 +51,12 @@ app.get('/', (req, res) => {
 
       let text = "SELECT * FROM users WHERE name='"+req.body.name+"'";
       pool.query(text, (err, result) => {
-          console.log( result.rows );
+          console.log(result.rows);
 
           // if the user doesnt exist
           if ( result.rows.length === 0 ) {
               console.log("Nope");
-              res.send('User not found');
+              res.redirect('/');
           }
           else {
               console.log("Yeh");
@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
               else {
                   // password is incorrect
                   console.log('PW nop');
-                  res.send('Password incorrect')
+                  res.redirect('/')
               }
           }
       })
@@ -89,7 +89,7 @@ app.get('/', (req, res) => {
 
   app.post('/new', (req, res) => {
 
-      let text = 'INSERT INTO users (name, password) VALUES ($1, $2)';
+      let text = "INSERT INTO users (name, password) VALUES ($1, $2)";
       const values = [req.body.regname, req.body.regpass];
 
       // execute query
@@ -129,20 +129,22 @@ app.get('/home', (req, res) => {
 
 app.get('/:name', (req, res) => {
 
-    let text = "SELECT * FROM receivers";
+    let text = "SELECT * FROM receivers WHERE name=$1";
+    const values=[req.params.name];
 
     let ebay = new eBay({
         clientID: "SherylWe-sherylwe-PRD-f392af54d-65578b46",
-        limit: 6
+        limit: 9
     });
 
-    pool.query(text, (err, result) => {
+    pool.query(text, values, (err, result) => {
     //    console.log(result,"my db")
+
         ebay.findItemsByKeywords("fashion").then(data => {
             if (data.length>0){
-               console.log(data[0].searchResult[0].item)
+               // console.log(data[0].searchResult[0].item)
 
-        let ebayResult = data[0].searchResult[0].item;
+                let ebayResult = data[0].searchResult[0].item;
 
               //  console.log(typeof data, data.searchResult)
               // console.log(data); // fetches top 6 results in form of JSON.
@@ -164,12 +166,29 @@ app.post('/home', (req, res) => {
           // res.redirect('/home');
           console.log(err)
           console.log(values)
-          res.render("home", {users: result.rows});
+          res.redirect('/home')
+          // res.render("home", {users: result.rows});
       });
 });
 
 
+app.put('/:name', (req, res) => {
+    let text = "UPDATE receivers SET category=$2, likes=$3, deadline=$4 WHERE name = $1";
+    const values = [req.params.name, req.body.category, req.body.likes, req.body.deadline];
 
+    pool.query(text, values, (err, result) => {
+        res.redirect('/home');
+    });
+});
+
+app.delete('/:name', (req, res) => {
+    let text = "DELETE from receivers WHERE name = $1";
+    const values = [req.params.name];
+
+    pool.query(text, values, (err, result) => {
+        res.redirect('/home');
+    });
+});
 
 
 const server = app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

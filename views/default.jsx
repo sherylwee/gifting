@@ -7,7 +7,7 @@ class Default extends React.Component {
                 <head>
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
                     <link rel="stylesheet" type="text/css" href="/style.css"/>
-                    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'/>
+                    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,800" rel="stylesheet"/>
                 </head>
                 <body>
                 <div className="container mt-4">
@@ -39,24 +39,27 @@ class Default extends React.Component {
 
 
                                   </div>
+
+
                                   <div className="modal-body">
                                     <form method="POST" action="/home">
                                       <div className="form-group">
                                       <br/>
-                                        <input name="name" placeholder="Name" className="form-control"/> <br/>
-                                        <input name="category" placeholder="Occasion (e.g. Birthday, Wedding)" className="form-control"/> <br/>
-                                        <input name="likes" placeholder="Likes" className="form-control"/> <br/>
-                                        <input name="deadline" placeholder="Deadline (YYYY-MM-DD)" className="form-control"/> <br/>
+                                        <input name="name" placeholder="Name" className="form-control form-control-sm" required/> <br/>
+                                        <input name="category" placeholder="Occasion (e.g. Birthday, Wedding)" className="form-control form-control-sm" required/> <br/>
+                                        <input name="likes" placeholder="Likes" className="form-control form-control-sm" required/> <br/>
+                                        <input name="deadline" placeholder="Due date (YYYY-MM-DD)" className="form-control form-control-sm" required/> <br/>
                                       </div>
-                                    </form>
-                                  </div>
+
+
 
 
 
                                   <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <form>
-                                        <input name="submit" type="submit" className="btn btn-primary"/>
+                                    <button type="button" className="btn btn-secondary" id="button" data-dismiss="modal">Close</button>
+
+                                        <input name="submit" type="submit" className="btn submitbutton"/>
+                                        </div>
                                     </form>
                                   </div>
 
@@ -73,6 +76,7 @@ class Default extends React.Component {
 
                       </div>
                     </nav>
+                    <hr/>
 
                     {this.props.children}
                 </div>

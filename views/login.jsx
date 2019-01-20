@@ -14,11 +14,15 @@ class Create extends React.Component {
 
 
 
-                        <div className="container aligntop">
+                        <div className="container spacingtop">
                           <div className="row">
                             <div className="col">
 
+                                <img className="size" src="https://i.gifer.com/D9u.gif"/>
+
                             </div>
+
+
 
 
 
@@ -30,8 +34,8 @@ class Create extends React.Component {
                                     <label for="formGroupExampleInput2">Register</label>
 
 
-                                    <input name="regname" placeholder="Name" className="form-control"/>
-                                    <input name="regpass" type="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock" placeholder="Password"/>
+                                    <input name="regname" placeholder="Name" className="form-control form-control-sm" required/>
+                                    <input name="regpass" type="password" className="form-control form-control-sm" aria-describedby="passwordHelpBlock" placeholder="Password" required/>
                                              <label><small id="passwordHelpInline" className="text-muted">
                                           Must be 8-20 characters long.
                                         </small></label>
@@ -40,17 +44,23 @@ class Create extends React.Component {
                                         </div>
                             </form>
 
+                            <br/><br/>
+
                             <form action="/" method="POST">
 
                                   <div className="form-group w-50">
                                     <label for="formGroupExampleInput2">Sign in</label>
-                                    <input name="name" placeholder="Name" className="form-control"/>
-                                    <input name="password" type="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock" placeholder="Password"/><br/>
+                                    <input name="name" placeholder="Name" className="form-control form-control-sm" required/>
+                                    <input name="password" type="password" id="inputPassword5" className="form-control form-control-sm" aria-describedby="passwordHelpBlock" placeholder="Password" required/><br/>
+
+
+
+
 
                                         <div className="form-check mb-2">
                                             <input className="form-check-input" type="checkbox" id="autoSizingCheck"/>
                                              <label className="form-check-label" htmlFor="autoSizingCheck">
-                                                Remember me
+                                                <small>Remember me</small>
                                              </label>
                                         </div>
                                             <input name="submit" type="submit" className="btn submitbutton"/>
