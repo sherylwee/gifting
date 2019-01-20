@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 
 const pg = require('pg');
+const sha256 = require('js-sha256');
 // const db = require('./db');
 
 const configs = {
@@ -49,8 +50,10 @@ app.get('/', (req, res) => {
 
   app.post('/', (req, res) => {
 
-      let text = "SELECT * FROM users WHERE name='"+req.body.name+"'";
-      pool.query(text, (err, result) => {
+      let text = "SELECT * FROM users WHERE name=$1";
+      const values = [req.body.name];
+
+      pool.query(text, values, (err, result) => {
           console.log(result.rows);
 
           // if the user doesnt exist
@@ -64,15 +67,17 @@ app.get('/', (req, res) => {
               const user = result.rows[0];
               let password = user.password;
 
-              if ( password == req.body.password ) {
+              if ( password == sha256(req.body.password) ) {
                   //password is correct
                   console.log('PW yeh');
                   res.cookie('loggedin', 'true');
+                  res.cookie('name', req.body.name);
                   res.redirect('/home');
               }
               else {
                   // password is incorrect
                   console.log('PW nop');
+                  console.log(sha256(password))
                   res.redirect('/')
               }
           }
@@ -82,55 +87,46 @@ app.get('/', (req, res) => {
   app.get('/logout', (req, res) => {
 
     res.clearCookie('loggedin');
+    res.clearCookie('name');
     res.redirect('/')
   })
-
 
 
   app.post('/new', (req, res) => {
 
       let text = "INSERT INTO users (name, password) VALUES ($1, $2)";
-      const values = [req.body.regname, req.body.regpass];
+      const values = [req.body.regname, sha256(req.body.regpass)];
 
       // execute query
       pool.query(text, values, (error, result) => {
           // res.send("login success, pls sign in");
-          // res.redirect('/');
-          res.render("newuser", {users: result.rows});
+          res.cookie('loggedIn', true);
+          res.cookie('name', req.body.name);
+          res.redirect('/');
       });
   });
 
 
 app.get('/home', (req, res) => {
 
-    let text = "SELECT * FROM receivers";
+    let text = "SELECT * FROM receivers ORDER BY deadline ASC";
 
     pool.query(text, (err, result) => {
+
+        // if (req.body.sortlist === req.body.sortname) {
+        //     let text = "SELECT * FROM receivers ORDER BY name ASC";
+        // }
+        // else {
+
         res.render("home", {users: result.rows})
+        // }
     });
 });
-
-// //EBAY API
-// app.get('/api', (req, res) => {
-    // let ebay = new eBay({
-    //     clientID: "SherylWe-sherylwe-PRD-f392af54d-65578b46",
-    //     limit: 6
-    // });
-
-    // ebay.findItemsByKeywords("dress").then((data) => {
-    //     console.log(data); // fetches top 6 results in form of JSON.
-    //     res.send(data);
-    // }, (error) => {
-    //     console.log(error);
-    //     res.send(error);
-    // })
-
-// });
 
 app.get('/:name', (req, res) => {
 
     let text = "SELECT * FROM receivers WHERE name=$1";
-    const values=[req.params.name];
+    const values = [req.params.name];
 
     let ebay = new eBay({
         clientID: "SherylWe-sherylwe-PRD-f392af54d-65578b46",
@@ -147,7 +143,7 @@ app.get('/:name', (req, res) => {
                 let ebayResult = data[0].searchResult[0].item;
 
               //  console.log(typeof data, data.searchResult)
-              // console.log(data); // fetches top 6 results in form of JSON.
+              //  console.log(data); // fetches top 6 results in form of JSON.
                     res.render("receiver", {receivers: result.rows[0], ebay: ebayResult});
                     // console.log(data[0].searchResult[0].item[0].condition)
             }

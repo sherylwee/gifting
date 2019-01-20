@@ -28,6 +28,8 @@ class Home extends React.Component {
                     <Default>
 
 
+
+
                     <div class="row justify-content-between pt-3">
                         <div class="col-4 header spacing">
                           My List
@@ -35,15 +37,17 @@ class Home extends React.Component {
                         <div class="col-4 spacingright">
 
                           <div className="dropdown row justify-content-end">
-                            <button className="btn dropdown-toggle dropdowncolor" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+                            <button className="btn dropdown-toggle dropdowncolor" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="sortlist">
                               Sort by
                             </button>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
 
 
-                              <button className="dropdown-item" type="button">Name</button>
-                              <button className="dropdown-item" type="button">Occasion</button>
-                              <button className="dropdown-item" type="button">Deadline</button>
+                              <a className="dropdown-item" name="sortdeadline">Due date</a>
+                              <a  className="dropdown-item" name="sortname">Name</a>
+                              <a className="dropdown-item" name="sortoccasion">Occasion</a>
                             </div>
                           </div>
                         </div>
