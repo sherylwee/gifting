@@ -157,6 +157,7 @@ html, body {
     border: 1px solid lightgrey;
     height: 30px;
     margin-bottom: 5%;
+    padding-left: 2.5%;
 }
 
 .editformicon {

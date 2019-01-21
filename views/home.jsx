@@ -26,23 +26,6 @@ class Home extends React.Component {
                             <div class="col-4 header spacing">
                                 My List
                             </div>
-
-                            <div class="col-4 spacingright">
-
-                                <div className="dropdown row justify-content-end">
-
-
-                                    <div className="form-group mr-3" id="alignopt">
-                                        <select className="form-control optfont" id="exampleFormControlSelect1">
-                                          <option value="sortdate" name="sortlist">Due date</option>
-                                          <option value="sortname" name="sortlist">Name</option>
-                                          <option value="sortoccasion" name="sortlist">Occasion</option>
-                                        </select>
-                                      </div>
-
-
-                                </div>
-                            </div>
                         </div>
 
                             {users}

@@ -84,7 +84,7 @@ class Receiver extends React.Component {
                             </div>
 
                             <div id="search" className="mt-1">
-                                <p className="px-5 pt-4" id="boxtext">These are our top 9 results:</p>
+                                <p className="px-5 pt-4" id="boxtext">These are our top 15 results:</p>
                                     {ebay}
                             </div>
 

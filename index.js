@@ -109,31 +109,7 @@ app.post('/new', (req, res) => {
 
 //HOMEPAGE
 app.get('/home', (req, res) => {
-
     let text = "SELECT * FROM receivers ORDER BY deadline ASC";
-
-    switch(req.body.sortlist) {
-        case "sortname":
-            let textname = "SELECT * FROM receivers ORDER BY name ASC";
-                pool.query(textname, (err, result) => {
-                    res.render("home", {users: result.rows})
-                });
-        break;
-
-        case "sortdate":
-            let textdeadline = "SELECT * FROM receivers ORDER BY deadline ASC";
-                pool.query(textdeadline, (err, result) => {
-                    res.render("home", {users: result.rows})
-                });
-        break;
-
-        case "sortoccasion":
-            let textoccasion = "SELECT * FROM receivers ORDER BY category ASC";
-                pool.query(textoccasion, (err, result) => {
-                    res.render("home", {users: result.rows})
-                });
-        break;
-    }
 
     pool.query(text, (err, result) => {
         res.render("home", {users: result.rows})
@@ -147,7 +123,7 @@ app.get('/:name/:likes', (req, res) => {
 
     let ebay = new eBay({
         clientID: "SherylWe-sherylwe-PRD-f392af54d-65578b46",
-        limit: 9
+        limit: 15
     });
 
     pool.query(text, values, (err, result) => {
@@ -163,38 +139,6 @@ app.get('/:name/:likes', (req, res) => {
         })
     });
 });
-
-// app.get('/:name', (req, res) => {
-//     let text = "SELECT * FROM receivers WHERE name=$1";
-//     const values = [req.params.name];
-
-//     let ebay = new eBay({
-//         clientID: "SherylWe-sherylwe-PRD-f392af54d-65578b46",
-//         clientSecret: 'PRD-392af54db58b-4443-47f9-98b5-7183',
-//         body: {
-//                 grant_type: "client_credentials"
-//             }
-//     });
-
-//     pool.query(text, values, (err, result) => {
-//         ebay.getAccessToken().then((data) => {
-//             if (data.length > 0) {
-//                 ebay.searchItems({
-//                     keyword: "iphone",
-//                     limit: 3
-//                 }).then((data) => {
-//                     // console.log(data);
-
-//                     console.log(data[0].searchResult[0].item)
-//                     let ebayResult = data[0].searchResult[0].item;
-//                     res.render("receiver", {receivers: result.rows[0], ebay: ebayResult});
-//                 })
-//             }
-//         })
-//     })
-// });
-
-
 
 //NEW RECEIVER
 app.post('/home', (req, res) => {
