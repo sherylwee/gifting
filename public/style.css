@@ -1,9 +1,6 @@
 html, body {
     font-family: 'Raleway', sans-serif;
-    /*background-color: #FBF5F3;*/
     background-color: #EDF9F5;
-    /*background-image: linear-gradient(to bottom, rgba(28, 200, 195, 1), rgba(28, 200, 195, 0.2));*/
-    /*height: 100%;*/
 }
 
 .navcolor {
@@ -36,14 +33,8 @@ html, body {
     letter-spacing: 1px;
     color: #005E5D;
     padding-top: 10px;
-}/*
-
-.name:hover {
-    transition: all 0.2s;
-    color: #8ED8D7;
-    text-decoration: none;
 }
-*/
+
 .opacity {
     color: #19A8A5;
 }
@@ -63,27 +54,20 @@ html, body {
     color: #19A8A5;
 }
 
-
-/*
-.bgimg {
-    background: url(../assets/bg.png) no-repeat;
-    height: 800px;
-    margin-left: -100px;
-}*/
-
-/*.divider {
-    border-right: 1px solid #005E5D;
-    opacity: 0.5;
-    margin-right: 8%;
-    margin-bottom: 3%;
-}
-*/
 .spacingtop{
     padding-top: 9%;
 }
 
 #aligntop {
     margin-top: 3.1%;
+}
+
+#alignopt {
+    margin-top: 4%;
+}
+
+.optfont {
+    font-size: 14px;
 }
 
 .submitbutton {
@@ -103,9 +87,11 @@ html, body {
 #search {
     background-color: white;
     width: 98%;
-    height: 310px;
+    height: 390px;
     overflow-y: scroll;
     display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 50px;
 }
 
 .aligntop {
@@ -143,7 +129,6 @@ html, body {
     margin: 3% 6%;
     display: inline-block;
     text-align: center;
-
 }
 
 #imgsize {
@@ -152,4 +137,63 @@ html, body {
 
 #boxline {
     margin-left: 5%;
+}
+
+#boxtext{
+    background-color: white;
+    height: 11%;
+    position: absolute;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.imgicon {
+    width: 6%;
+    margin-right: 2%;
+}
+
+.formborder {
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    height: 30px;
+    margin-bottom: 5%;
+}
+
+.editformicon {
+    margin-right: 2%;
+    width: 9%;
+}
+
+.editformborder {
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    height: 30px;
+    margin-bottom: 5%;
+    width: 88%;
+    padding-left: 4%;
+}
+
+@media (max-width: 480px) {
+    .navcolor {
+        text-align: center;
+        width: 340px;
+        font-size: 16px;
+    }
+
+    .column {
+        display: block;
+        width: 95%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .navcolor {
+        text-align: center;
+        width: 480px;
+        font-size: 16px;
+    }
+
+    .column {
+        width: 46%;
+    }
 }
